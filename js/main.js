@@ -7,8 +7,16 @@
             const targetId = this.getAttribute('href').substring(1);
             const targetElement = document.getElementById(targetId);
             if (targetElement) {
-                // Account for sticky header on mobile
-                const offset = window.innerWidth <= 768 ? 80 : 100;
+                // Account for sticky header height on different screen sizes
+                let offset;
+                if (window.innerWidth <= 480) {
+                    offset = 60; // Compact header on small mobile
+                } else if (window.innerWidth <= 767) {
+                    offset = 80; // Medium mobile with compact title
+                } else {
+                    offset = 100; // Desktop with full header
+                }
+                
                 const elementPosition = targetElement.offsetTop - offset;
                 window.scrollTo({
                     top: elementPosition,
@@ -237,25 +245,97 @@ function improveMobileTableExperience() {
         if (window.innerWidth <= 768) {
             const scrollHint = document.createElement('div');
             scrollHint.className = 'mobile-table-hint';
-            scrollHint.innerHTML = '← Scroll horizontally to see all columns →';
+            scrollHint.innerHTML = `
+                <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+                    <span style="font-size: 1.2rem;">👈</span>
+                    <strong>Swipe to scroll table</strong>
+                    <span style="font-size: 1.2rem;">👉</span>
+                </div>
+                <div style="font-size: 0.75rem; opacity: 0.8;">Drag horizontally to see all columns</div>
+            `;
             scrollHint.style.cssText = `
                 text-align: center;
                 font-size: 0.8rem;
-                color: #666;
-                padding: 0.5rem;
-                background: #f9f9f9;
-                border: 1px dashed #ccc;
-                margin-bottom: 0.5rem;
-                border-radius: 4px;
+                color: #555;
+                padding: 0.75rem;
+                background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+                border: 1px solid #dee2e6;
+                margin-bottom: 0.75rem;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             `;
             
             table.parentNode.insertBefore(scrollHint, table);
+            
+            // Add visual scroll indicators to the table
+            const tableWrapper = document.createElement('div');
+            tableWrapper.className = 'table-wrapper-mobile';
+            tableWrapper.style.cssText = `
+                position: relative;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            `;
+            
+            // Add left shadow indicator
+            const leftShadow = document.createElement('div');
+            leftShadow.className = 'table-scroll-shadow left';
+            leftShadow.style.cssText = `
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 10px;
+                height: 100%;
+                background: linear-gradient(to right, rgba(0,0,0,0.1), transparent);
+                pointer-events: none;
+                z-index: 2;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            `;
+            
+            // Add right shadow indicator
+            const rightShadow = document.createElement('div');
+            rightShadow.className = 'table-scroll-shadow right';
+            rightShadow.style.cssText = `
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 10px;
+                height: 100%;
+                background: linear-gradient(to left, rgba(0,0,0,0.1), transparent);
+                pointer-events: none;
+                z-index: 2;
+                opacity: 1;
+                transition: opacity 0.3s ease;
+            `;
+            
+            // Wrap the table
+            table.parentNode.insertBefore(tableWrapper, table);
+            tableWrapper.appendChild(leftShadow);
+            tableWrapper.appendChild(rightShadow);
+            tableWrapper.appendChild(table);
+            
+            // Update shadow visibility based on scroll position
+            table.addEventListener('scroll', function() {
+                const scrollLeft = this.scrollLeft;
+                const scrollWidth = this.scrollWidth;
+                const clientWidth = this.clientWidth;
+                
+                // Show/hide left shadow
+                leftShadow.style.opacity = scrollLeft > 0 ? '1' : '0';
+                
+                // Show/hide right shadow
+                rightShadow.style.opacity = scrollLeft < (scrollWidth - clientWidth - 1) ? '1' : '0';
+            });
         }
         
         // Add smooth scrolling for table content
         table.addEventListener('touchstart', function() {
             this.style.scrollBehavior = 'smooth';
         });
+        
+        // Improve touch scrolling momentum on iOS
+        table.style.webkitOverflowScrolling = 'touch';
     });
 }
 
@@ -287,7 +367,18 @@ function handleViewportResize() {
     window.resizeTimeout = setTimeout(function() {
         // Re-apply mobile table hints if viewport changes
         const existingHints = document.querySelectorAll('.mobile-table-hint');
+        const existingWrappers = document.querySelectorAll('.table-wrapper-mobile');
+        
+        // Clean up existing mobile table enhancements
         existingHints.forEach(hint => hint.remove());
+        existingWrappers.forEach(wrapper => {
+            const table = wrapper.querySelector('.properties-table');
+            if (table) {
+                // Move table back to its original parent
+                wrapper.parentNode.insertBefore(table, wrapper);
+                wrapper.remove();
+            }
+        });
         
         if (window.innerWidth <= 768) {
             improveMobileTableExperience();
