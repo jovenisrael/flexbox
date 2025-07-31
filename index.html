@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Flexbox</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <script src="js/script.js"></script>
+    <body>
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <h1>Flexbox Comprehensive Guide</h1>
+            <p>Interactive demonstration of all CSS Flexbox properties and values</p>
+            <div class="nav-links">
+                <a href="#container-props">Container Properties</a>
+                <a href="#item-props">Item Properties</a>
+                <a href="#examples">Practical Examples</a>
+                <a href="#reference">Quick Reference</a>
+                <button id="printBtn" onclick="printLesson()" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: background 0.3s;">
+                    🖨️ Print Lesson
+                </button>
+            </div>
+        </div>
+    
+        <!-- Main Content -->
+        <div class="main-content">
+            
+            <!-- Introduction Section -->
+            <div class="section">
+                <div class="section-header">Introduction to Flexbox</div>
+                <div class="section-content">
+                    <p>CSS Flexbox (Flexible Box Layout) is a layout method that provides an efficient way to arrange, distribute, and align items in a container, even when their size is unknown or dynamic.</p>
+                    
+                    <div style="background: #e8f5e8; border-left: 4px solid #28a745; padding: 1rem; margin: 1rem 0; border-radius: 4px;">
+                        <strong>💡 Print-Friendly Guide:</strong> Click the "🖨️ Print Lesson" button in the top navigation or use <kbd>Ctrl+P</kbd> (Windows) / <kbd>Cmd+P</kbd> (Mac) to print this entire guide for offline study. The print version is optimized with proper page breaks and readable formatting.
+                    </div>
+    
+                    <div class="property-description">
+                        <strong>Key Concepts:</strong>
+                        <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                            <li><strong>Flex Container:</strong> The parent element with <code>display: flex</code></li>
+                            <li><strong>Flex Items:</strong> The children of the flex container</li>
+                            <li><strong>Main Axis:</strong> The primary axis along which flex items are laid out</li>
+                            <li><strong>Cross Axis:</strong> The axis perpendicular to the main axis</li>
+                        </ul>
+                    </div>
+    
+                    <div class="demo-container">
+                        <div class="demo-title">Basic Flex Container</div>
+                        <div class="flex-container">
+                            <div class="flex-item red">Item 1</div>
+                            <div class="flex-item blue">Item 2</div>
+                            <div class="flex-item green">Item 3</div>
+                        </div>
+                        <div class="code-display">
+    <span class="css-property">.flex-container</span> {
+        <span class="css-property">display</span>: <span class="css-value">flex</span>;
+    }
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Container Properties Section -->
+            <div class="section" id="container-props">
+                <div class="section-header">Flex Container Properties</div>
+                <div class="section-content">
+                    
+                    <!-- Flex Direction -->
+                    <div class="demo-container">
+                        <div class="demo-title">flex-direction</div>
+                        <div class="property-description">
+                            Defines the direction flex items are placed in the flex container.
+                        </div>
+                        
+                        <h4>row (default)</h4>
+                        <div class="flex-container flex-direction-row">
+                            <div class="flex-item red">1</div>
+                            <div class="flex-item blue">2</div>
+                            <div class="flex-item green">3</div>
+                        </div>
+                        
+                        <h4>column</h4>
+                        <div class="flex-container flex-direction-column">
+                            <div class="flex-item red">1</div>
+                            <div class="flex-item blue">2</div>
+                            <div class="flex-item green">3</div>
+                        </div>
+                        
+                        <div style="margin-top: 2rem; padding: 1rem; background: #fffacd; border-radius: 6px; border-left: 4px solid #ffa500;">
+                            <strong>📏 Understanding Column Direction Auto-Sizing:</strong>
+                            <div style="margin-top: 1rem;">
+                                <div style="display: flex; gap: 2rem; margin-bottom: 1rem;">
+                                    <div style="flex: 1;">
+                                        <h5 style="margin-bottom: 0.5rem; color: #d32f2f;">❌ Common Misconception:</h5>
+                                        <p style="margin: 0; font-size: 0.9rem;">"Items shrink to content width"</p>
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <h5 style="margin-bottom: 0.5rem; color: #388e3c;">✅ Reality:</h5>
+                                        <p style="margin: 0; font-size: 0.9rem;">"Items stretch to fill container width by default"</p>
+                                    </div>
+                                </div>
+                                
+                                <div style="display: flex; gap: 1rem; margin: 1rem 0;">
+                                    <div style="flex: 1; background: white; padding: 1rem; border-radius: 4px; border: 1px solid #ddd;">
+                                        <h6 style="margin: 0 0 0.5rem 0;">With align-items: stretch (default)</h6>
+                                        <div style="display: flex; flex-direction: column; background: #f0f8ff; border: 2px dashed #4facfe; padding: 0.5rem; height: 120px;">
+                                            <div style="background: #ff6b6b; color: white; padding: 0.5rem; margin: 0.25rem; text-align: center; border-radius: 4px;">Item 1 (full width)</div>
+                                            <div style="background: #4facfe; color: white; padding: 0.5rem; margin: 0.25rem; text-align: center; border-radius: 4px;">Item 2 (full width)</div>
+                                            <div style="background: #43e97b; color: white; padding: 0.5rem; margin: 0.25rem; text-align: center; border-radius: 4px;">Item 3 (full width)</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="flex: 1; background: white; padding: 1rem; border-radius: 4px; border: 1px solid #ddd;">
+                                        <h6 style="margin: 0 0 0.5rem 0;">With align-items: flex-start</h6>
+                                        <div style="display: flex; flex-direction: column; align-items: flex-start; background: #f0f8ff; border: 2px dashed #4facfe; padding: 0.5rem; height: 120px;">
+                                            <div style="background: #ff6b6b; color: white; padding: 0.5rem; margin: 0.25rem; text-align: center; border-radius: 4px;">Item 1</div>
+                                            <div style="background: #4facfe; color: white; padding: 0.5rem; margin: 0.25rem; text-align: center; border-radius: 4px;">Item 2</div>
+                                            <div style="background: #43e97b; color: white; padding: 0.5rem; margin: 0.25rem; text-align: center; border-radius: 4px;">Item 3</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div style="font-size: 0.9rem; line-height: 1.5;">
+                                    <strong>Why this happens:</strong><br>
+                                    • In <code>flex-direction: column</code>, the <strong>cross axis is horizontal</strong><br>
+                                    • <code>align-items: stretch</code> (default) makes items stretch across the <strong>cross axis</strong><br>
+                                    • So items automatically take the <strong>full width</strong> of their container<br>
+                                    • Height is determined by content (unless flex-grow is used)
+                                </div>
+                                
+                                <div style="margin-top: 1rem; background: #f5f5f5; padding: 1rem; border-radius: 4px;">
+                                    <strong>CSS Code Comparison:</strong>
+                                    <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                                        <div style="flex: 1;">
+                                            <div style="background: #2d3748; color: #e2e8f0; padding: 0.75rem; border-radius: 4px; font-family: monospace; font-size: 0.8rem;">
+    <span style="color: #68d391;">.container</span> {
+      <span style="color: #68d391;">display</span>: <span style="color: #f6ad55;">flex</span>;
+      <span style="color: #68d391;">flex-direction</span>: <span style="color: #f6ad55;">column</span>;
+      <span style="color: #68d391;">align-items</span>: <span style="color: #f6ad55;">stretch</span>; <span style="color: #a0aec0;">/* default */</span>
+      <span style="color: #68d391;">width</span>: <span style="color: #f6ad55;">300px</span>;
+    }
+    
+    <span style="color: #90cdf4;">/* Items auto-size to 300px width */</span>
+                                            </div>
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <div style="background: #2d3748; color: #e2e8f0; padding: 0.75rem; border-radius: 4px; font-family: monospace; font-size: 0.8rem;">
+    <span style="color: #68d391;">.container</span> {
+      <span style="color: #68d391;">display</span>: <span style="color: #f6ad55;">flex</span>;
+      <span style="color: #68d391;">flex-direction</span>: <span style="color: #f6ad55;">column</span>;
+      <span style="color: #68d391;">align-items</span>: <span style="color: #f6ad55;">flex-start</span>;
+      <span style="color: #68d391;">width</span>: <span style="color: #f6ad55;">300px</span>;
+    }
+    
+    <span style="color: #90cdf4;">/* Items size to their content */</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4>row-reverse</h4>
+                        <div class="flex-container flex-direction-row-reverse">
+                            <div class="flex-item red">1</div>
+                            <div class="flex-item blue">2</div>
+                            <div class="flex-item green">3</div>
+                        </div>
+                        
+                        <h4>column-reverse</h4>
+                        <div class="flex-container flex-direction-column-reverse">
+                            <div class="flex-item red">1</div>
+                            <div class="flex-item blue">2</div>
+                            <div class="flex-item green">3</div>
+                        </div>
+                    </div>
+    
+                    <!-- Justify Content -->
+                    <div class="demo-container">
+                        <div class="demo-title">justify-content</div>
+                        <div class="property-description">
+                            Defines how flex items are aligned along the main axis.
+                        </div>
+                        
+                        <h4>flex-start (default)</h4>
+                        <div class="flex-container justify-start">
+                            <div class="flex-item red">1</div>
+                            <div class="flex-item blue">2</div>
+                            <div class="flex-item green">3</div>
+                        </div>
+                        
+                        <h4>flex-end</h4>
+                        <div class="flex-container justify-end">
+                            <div class="flex-item red">1</div>
+                            <div class="flex-item blue">2</div>
+                            <div class="flex-item green">3</div>
+                        </div>
+                        
+                        <h4>center</h4>
+                        <div class="flex-container justify-center">
+                            <div class="flex-item red">1</div>
+                            <div class="flex-item blue">2</div>
+                            <div class="flex-item green">3</div>
+                        </div>
+                        
+                        <h4>space-between</h4>
+                        <div class="flex-container justify-between">
+                            <div class="flex-item red">1</div>
+                            <div class="flex-item blue">2</div>
+                            <div class="flex-item green">3</div>
+                        </div>
+                        
+                        <h4>space-around</h4>
+                        <div class="flex-container justify-around">
+                            <div class="flex-item red">1</div>
+                            <div class="flex-item blue">2</div>
+                            <div class="flex-item green">3</div>
+                        </div>
+                        
+                        <h4>space-evenly</h4>
+                        <div class="flex-container justify-evenly">
+                            <div class="flex-item red">1</div>
+                            <div class="flex-item blue">2</div>
+                            <div class="flex-item green">3</div>
+                        </div>
+                    </div>
+    
+                    <!-- Align Items -->
+                    <div class="demo-container">
+                        <div class="demo-title">align-items</div>
+                        <div class="property-description">
+                            Defines how flex items are aligned along the cross axis.
+                        </div>
+                        
+                        <h4>stretch (default)</h4>
+                        <div class="flex-container align-stretch" style="height: 120px;">
+                            <div class="flex-item red">1</div>
+                            <div class="flex-item blue">2<br>Two lines</div>
+                            <div class="flex-item green">3</div>
+                        </div>
+                        
+                        <h4>flex-start</h4>
+                        <div class="flex-container align-start" style="height: 120px;">
+                            <div class="flex-item red">1</div>
+                            <div class="flex-item blue">2<br>Two lines</div>
+                            <div class="flex-item green">3</div>
+                        </div>
+                        
+                        <h4>flex-end</h4>
+                        <div class="flex-container align-end" style="height: 120px;">
+                            <div class="flex-item red">1</div>
+                            <div class="flex-item blue">2<br>Two lines</div>
+                            <div class="flex-item green">3</div>
+                        </div>
+                        
+                        <h4>center</h4>
+                        <div class="flex-container align-center" style="height: 120px;">
+                            <div class="flex-item red">1</div>
+                            <div class="flex-item blue">2<br>Two lines</div>
+                            <div class="flex-item green">3</div>
+                        </div>
+                        
+                        <h4>baseline</h4>
+                        <div class="flex-container align-baseline" style="height: 120px;">
+                            <div class="flex-item red">1</div>
+                            <div class="flex-item blue" style="font-size: 1.5rem;">2</div>
+                            <div class="flex-item green" style="font-size: 0.8rem;">3</div>
+                        </div>
+                    </div>
+    
+                    <!-- Flex Wrap -->
+                    <div class="demo-container">
+                        <div class="demo-title">flex-wrap</div>
+                        <div class="property-description">
+                            Controls whether flex items are forced onto one line or can wrap onto multiple lines.
+                        </div>
+                        
+                        <h4>nowrap (default)</h4>
+                        <div class="flex-container nowrap" style="width: 300px;">
+                            <div class="flex-item red">Item 1</div>
+                            <div class="flex-item blue">Item 2</div>
+                            <div class="flex-item green">Item 3</div>
+                            <div class="flex-item purple">Item 4</div>
+                            <div class="flex-item orange">Item 5</div>
+                        </div>
+                        
+                        <h4>wrap</h4>
+                        <div class="flex-container wrap" style="width: 300px;">
+                            <div class="flex-item red">Item 1</div>
+                            <div class="flex-item blue">Item 2</div>
+                            <div class="flex-item green">Item 3</div>
+                            <div class="flex-item purple">Item 4</div>
+                            <div class="flex-item orange">Item 5</div>
+                        </div>
+                        
+                        <h4>wrap-reverse</h4>
+                        <div class="flex-container wrap-reverse" style="width: 300px;">
+                            <div class="flex-item red">Item 1</div>
+                            <div class="flex-item blue">Item 2</div>
+                            <div class="flex-item green">Item 3</div>
+                            <div class="flex-item purple">Item 4</div>
+                            <div class="flex-item orange">Item 5</div>
+                        </div>
+                    </div>
+    
+                    <!-- Gap -->
+                    <div class="demo-container">
+                        <div class="demo-title">gap</div>
+                        <div class="property-description">
+                            Sets the gaps between rows and columns. Shorthand for row-gap and column-gap.
+                        </div>
+                        
+                        <h4>No gap</h4>
+                        <div class="flex-container">
+                            <div class="flex-item red">1</div>
+                            <div class="flex-item blue">2</div>
+                            <div class="flex-item green">3</div>
+                        </div>
+                        
+                        <h4>gap: 0.5rem</h4>
+                        <div class="flex-container gap-small">
+                            <div class="flex-item red">1</div>
+                            <div class="flex-item blue">2</div>
+                            <div class="flex-item green">3</div>
+                        </div>
+                        
+                        <h4>gap: 1rem</h4>
+                        <div class="flex-container gap-medium">
+                            <div class="flex-item red">1</div>
+                            <div class="flex-item blue">2</div>
+                            <div class="flex-item green">3</div>
+                        </div>
+                        
+                        <h4>gap: 2rem</h4>
+                        <div class="flex-container gap-large">
+                            <div class="flex-item red">1</div>
+                            <div class="flex-item blue">2</div>
+                            <div class="flex-item green">3</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Item Properties Section -->
+            <div class="section" id="item-props">
+                <div class="section-header">Flex Item Properties</div>
+                <div class="section-content">
+                    
+                    <!-- Flex Grow -->
+                    <div class="demo-container">
+                        <div class="demo-title">flex-grow</div>
+                        <div class="property-description">
+                            Defines how much a flex item should grow relative to the rest of the flex items.
+                        </div>
+                        
+                        <h4>All items flex-grow: 0 (default)</h4>
+                        <div class="flex-container">
+                            <div class="flex-item red">1</div>
+                            <div class="flex-item blue">2</div>
+                            <div class="flex-item green">3</div>
+                        </div>
+                        
+                        <h4>Second item flex-grow: 1</h4>
+                        <div class="flex-container">
+                            <div class="flex-item red">1</div>
+                            <div class="flex-item blue grow-1">2 (grow: 1)</div>
+                            <div class="flex-item green">3</div>
+                        </div>
+                        
+                        <h4>Different grow values</h4>
+                        <div class="flex-container">
+                            <div class="flex-item red grow-1">1 (grow: 1)</div>
+                            <div class="flex-item blue grow-2">2 (grow: 2)</div>
+                            <div class="flex-item green grow-3">3 (grow: 3)</div>
+                        </div>
+                    </div>
+    
+                    <!-- Flex Shrink -->
+                    <div class="demo-container">
+                        <div class="demo-title">flex-shrink</div>
+                        <div class="property-description">
+                            Defines how much a flex item should shrink relative to the rest when there's not enough space.
+                        </div>
+                        
+                        <h4>All items flex-shrink: 1 (default)</h4>
+                        <div class="flex-container" style="width: 200px;">
+                            <div class="flex-item red basis-200">Item 1 (200px)</div>
+                            <div class="flex-item blue basis-200">Item 2 (200px)</div>
+                            <div class="flex-item green basis-200">Item 3 (200px)</div>
+                        </div>
+                        
+                        <h4>First item flex-shrink: 0</h4>
+                        <div class="flex-container" style="width: 200px;">
+                            <div class="flex-item red basis-200 shrink-0">Item 1 (no shrink)</div>
+                            <div class="flex-item blue basis-200">Item 2 (200px)</div>
+                            <div class="flex-item green basis-200">Item 3 (200px)</div>
+                        </div>
+                    </div>
+    
+                    <!-- Flex Basis -->
+                    <div class="demo-container">
+                        <div class="demo-title">flex-basis</div>
+                        <div class="property-description">
+                            Defines the initial main size of a flex item before free space is distributed.
+                        </div>
+                        
+                        <h4>flex-basis: auto (default)</h4>
+                        <div class="flex-container">
+                            <div class="flex-item red basis-auto">Auto</div>
+                            <div class="flex-item blue basis-auto">Auto width</div>
+                            <div class="flex-item green basis-auto">Auto</div>
+                        </div>
+                        
+                        <h4>flex-basis: 200px</h4>
+                        <div class="flex-container">
+                            <div class="flex-item red basis-200">200px</div>
+                            <div class="flex-item blue basis-200">200px</div>
+                            <div class="flex-item green basis-200">200px</div>
+                        </div>
+                        
+                        <h4>flex-basis: 30%</h4>
+                        <div class="flex-container">
+                            <div class="flex-item red basis-30">30%</div>
+                            <div class="flex-item blue basis-30">30%</div>
+                            <div class="flex-item green basis-30">30%</div>
+                        </div>
+                    </div>
+    
+                    <!-- Order -->
+                    <div class="demo-container">
+                        <div class="demo-title">order</div>
+                        <div class="property-description">
+                            Controls the order in which flex items appear in the flex container.
+                        </div>
+                        
+                        <h4>Default order (0)</h4>
+                        <div class="flex-container">
+                            <div class="flex-item red">First in DOM</div>
+                            <div class="flex-item blue">Second in DOM</div>
+                            <div class="flex-item green">Third in DOM</div>
+                        </div>
+                        
+                        <h4>With custom order</h4>
+                        <div class="flex-container">
+                            <div class="flex-item red order-2">First in DOM (order: 2)</div>
+                            <div class="flex-item blue order-3">Second in DOM (order: 3)</div>
+                            <div class="flex-item green order-1">Third in DOM (order: 1)</div>
+                        </div>
+                        
+                        <h4>With negative order</h4>
+                        <div class="flex-container">
+                            <div class="flex-item red">First in DOM (order: 0)</div>
+                            <div class="flex-item blue order-neg1">Second in DOM (order: -1)</div>
+                            <div class="flex-item green">Third in DOM (order: 0)</div>
+                        </div>
+                    </div>
+    
+                    <!-- Align Self -->
+                    <div class="demo-container">
+                        <div class="demo-title">align-self</div>
+                        <div class="property-description">
+                            Allows individual flex items to override the align-items value.
+                        </div>
+                        
+                        <div class="flex-container align-center" style="height: 150px;">
+                            <div class="flex-item red self-start">align-self: flex-start</div>
+                            <div class="flex-item blue">align-self: auto (inherits center)</div>
+                            <div class="flex-item green self-end">align-self: flex-end</div>
+                            <div class="flex-item purple self-stretch">align-self: stretch</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Practical Examples Section -->
+            <div class="section" id="examples">
+                <div class="section-header">Practical Layout Examples</div>
+                <div class="section-content">
+                    
+                    <!-- Navigation Bar -->
+                    <div class="demo-container">
+                        <div class="demo-title">Navigation Bar</div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; background: #333; color: white; padding: 1rem; border-radius: 8px;">
+                            <div style="font-size: 1.5rem; font-weight: bold;">Logo</div>
+                            <div style="display: flex; gap: 2rem;">
+                                <a href="#" style="color: white; text-decoration: none;">Home</a>
+                                <a href="#" style="color: white; text-decoration: none;">About</a>
+                                <a href="#" style="color: white; text-decoration: none;">Contact</a>
+                            </div>
+                            <button style="background: #4facfe; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px;">Login</button>
+                        </div>
+                        <div class="code-display">
+    <span class="css-property">.navbar</span> {
+        <span class="css-property">display</span>: <span class="css-value">flex</span>;
+        <span class="css-property">justify-content</span>: <span class="css-value">space-between</span>;
+        <span class="css-property">align-items</span>: <span class="css-value">center</span>;
+    }
+                        </div>
+                    </div>
+    
+                    <!-- Card Layout -->
+                    <div class="demo-container">
+                        <div class="demo-title">Card Grid Layout</div>
+                        <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+                            <div style="flex: 1 1 300px; max-width: 350px; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); padding: 1.5rem;">
+                                <h3 style="margin-bottom: 1rem; color: #333;">Card 1</h3>
+                                <p style="color: #666;">This is some content for the first card.</p>
+                            </div>
+                            <div style="flex: 1 1 300px; max-width: 350px; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); padding: 1.5rem;">
+                                <h3 style="margin-bottom: 1rem; color: #333;">Card 2</h3>
+                                <p style="color: #666;">This is some content for the second card.</p>
+                            </div>
+                            <div style="flex: 1 1 300px; max-width: 350px; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); padding: 1.5rem;">
+                                <h3 style="margin-bottom: 1rem; color: #333;">Card 3</h3>
+                                <p style="color: #666;">This is some content for the third card.</p>
+                            </div>
+                        </div>
+                        <div class="code-display">
+    <span class="css-property">.card-container</span> {
+        <span class="css-property">display</span>: <span class="css-value">flex</span>;
+        <span class="css-property">flex-wrap</span>: <span class="css-value">wrap</span>;
+        <span class="css-property">gap</span>: <span class="css-value">1rem</span>;
+        <span class="css-property">justify-content</span>: <span class="css-value">center</span>;
+    }
+    
+    <span class="css-property">.card</span> {
+        <span class="css-property">flex</span>: <span class="css-value">1 1 300px</span>; /* grow shrink basis */
+        <span class="css-property">max-width</span>: <span class="css-value">350px</span>;
+    }
+                        </div>
+                    </div>
+    
+                    <!-- Sidebar Layout -->
+                    <div class="demo-container">
+                        <div class="demo-title">Sidebar Layout</div>
+                        <div style="display: flex; height: 200px; gap: 1rem;">
+                            <div style="flex: 0 0 200px; background: #f0f0f0; padding: 1rem; border-radius: 6px;">
+                                <h4>Sidebar</h4>
+                                <p>Fixed width sidebar content</p>
+                            </div>
+                            <div style="flex: 1; background: white; padding: 1rem; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                <h4>Main Content</h4>
+                                <p>This main content area grows to fill the remaining space.</p>
+                            </div>
+                        </div>
+                        <div class="code-display">
+    <span class="css-property">.layout</span> {
+        <span class="css-property">display</span>: <span class="css-value">flex</span>;
+    }
+    
+    <span class="css-property">.sidebar</span> {
+        <span class="css-property">flex</span>: <span class="css-value">0 0 200px</span>; /* no grow, no shrink, 200px basis */
+    }
+    
+    <span class="css-property">.main-content</span> {
+        <span class="css-property">flex</span>: <span class="css-value">1</span>; /* grow to fill remaining space */
+    }
+                        </div>
+                    </div>
+    
+                    <!-- Center Content -->
+                    <div class="demo-container">
+                        <div class="demo-title">Perfect Centering</div>
+                        <div style="display: flex; justify-content: center; align-items: center; height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 8px;">
+                            <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                                <h3 style="margin: 0; text-align: center;">Perfectly Centered</h3>
+                                <p style="margin: 0.5rem 0 0 0; text-align: center; color: #666;">Both horizontally and vertically</p>
+                            </div>
+                        </div>
+                        <div class="code-display">
+    <span class="css-property">.center-container</span> {
+        <span class="css-property">display</span>: <span class="css-value">flex</span>;
+        <span class="css-property">justify-content</span>: <span class="css-value">center</span>;
+        <span class="css-property">align-items</span>: <span class="css-value">center</span>;
+        <span class="css-property">height</span>: <span class="css-value">100vh</span>; /* or any height */
+    }
+                        </div>
+                    </div>
+    
+                    <!-- Holy Grail Layout -->
+                    <div class="demo-container">
+                        <div class="demo-title">Holy Grail Layout (Header, Sidebar, Main, Footer)</div>
+                        <div style="display: flex; flex-direction: column; height: 300px; border: 2px solid #ddd; border-radius: 8px; overflow: hidden;">
+                            <!-- Header -->
+                            <div style="background: #2c3e50; color: white; padding: 1rem; text-align: center; font-weight: bold;">
+                                Header
+                            </div>
+                            <!-- Main Content Area -->
+                            <div style="display: flex; flex: 1;">
+                                <!-- Sidebar -->
+                                <div style="background: #34495e; color: white; padding: 1rem; flex: 0 0 150px; display: flex; align-items: center; justify-content: center;">
+                                    Sidebar
+                                </div>
+                                <!-- Main Content -->
+                                <div style="background: #ecf0f1; padding: 1rem; flex: 1; display: flex; align-items: center; justify-content: center;">
+                                    Main Content Area
+                                </div>
+                                <!-- Right Sidebar -->
+                                <div style="background: #34495e; color: white; padding: 1rem; flex: 0 0 120px; display: flex; align-items: center; justify-content: center;">
+                                    Ads
+                                </div>
+                            </div>
+                            <!-- Footer -->
+                            <div style="background: #2c3e50; color: white; padding: 1rem; text-align: center; font-weight: bold;">
+                                Footer
+                            </div>
+                        </div>
+                        <div class="code-display">
+    <span class="css-property">.holy-grail</span> {
+        <span class="css-property">display</span>: <span class="css-value">flex</span>;
+        <span class="css-property">flex-direction</span>: <span class="css-value">column</span>;
+        <span class="css-property">min-height</span>: <span class="css-value">100vh</span>;
+    }
+    
+    <span class="css-property">.main-area</span> {
+        <span class="css-property">display</span>: <span class="css-value">flex</span>;
+        <span class="css-property">flex</span>: <span class="css-value">1</span>; /* grow to fill */
+    }
+    
+    <span class="css-property">.sidebar</span> { <span class="css-property">flex</span>: <span class="css-value">0 0 150px</span>; }
+    <span class="css-property">.main</span> { <span class="css-property">flex</span>: <span class="css-value">1</span>; }
+    <span class="css-property">.ads</span> { <span class="css-property">flex</span>: <span class="css-value">0 0 120px</span>; }
+                        </div>
+                    </div>
+    
+                    <!-- Media Object Pattern -->
+                    <div class="demo-container">
+                        <div class="demo-title">Media Object Pattern (Image + Content)</div>
+                        <div style="display: flex; gap: 1rem; background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 1rem;">
+                            <div style="flex: 0 0 80px;">
+                                <div style="width: 80px; height: 80px; background: linear-gradient(45deg, #667eea, #764ba2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem;">
+                                    👤
+                                </div>
+                            </div>
+                            <div style="flex: 1;">
+                                <h4 style="margin: 0 0 0.5rem 0; color: #333;">John Doe</h4>
+                                <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.9rem;">2 hours ago</p>
+                                <p style="margin: 0; line-height: 1.5;">This is a media object pattern commonly used for comments, social media posts, testimonials, and user profiles. The image stays fixed while the content grows.</p>
+                            </div>
+                            <div style="flex: 0 0 auto; display: flex; align-items: flex-start;">
+                                <button style="background: #4facfe; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">Reply</button>
+                            </div>
+                        </div>
+                        <div class="code-display">
+    <span class="css-property">.media-object</span> {
+        <span class="css-property">display</span>: <span class="css-value">flex</span>;
+        <span class="css-property">gap</span>: <span class="css-value">1rem</span>;
+    }
+    
+    <span class="css-property">.media-figure</span> {
+        <span class="css-property">flex</span>: <span class="css-value">0 0 80px</span>; /* fixed image area */
+    }
+    
+    <span class="css-property">.media-content</span> {
+        <span class="css-property">flex</span>: <span class="css-value">1</span>; /* grows with content */
+    }
+    
+    <span class="css-property">.media-actions</span> {
+        <span class="css-property">flex</span>: <span class="css-value">0 0 auto</span>; /* size to content */
+    }
+                        </div>
+                    </div>
+    
+                    <!-- Form Layout -->
+                    <div class="demo-container">
+                        <div class="demo-title">Responsive Form Layout</div>
+                        <form style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+                                <div style="flex: 1 1 300px;">
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">First Name</label>
+                                    <input type="text" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;" placeholder="Enter first name">
+                                </div>
+                                <div style="flex: 1 1 300px;">
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">Last Name</label>
+                                    <input type="text" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;" placeholder="Enter last name">
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 1rem;">
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">Email</label>
+                                <input type="email" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;" placeholder="Enter email address">
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" style="margin: 0;">
+                                    <span>Subscribe to newsletter</span>
+                                </label>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button type="button" style="padding: 0.75rem 1.5rem; border: 1px solid #ddd; background: white; border-radius: 4px; cursor: pointer;">Cancel</button>
+                                    <button type="submit" style="padding: 0.75rem 1.5rem; background: #4facfe; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: 600;">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="code-display">
+    <span class="css-property">.form-row</span> {
+        <span class="css-property">display</span>: <span class="css-value">flex</span>;
+        <span class="css-property">flex-wrap</span>: <span class="css-value">wrap</span>;
+        <span class="css-property">gap</span>: <span class="css-value">1rem</span>;
+    }
+    
+    <span class="css-property">.form-field</span> {
+        <span class="css-property">flex</span>: <span class="css-value">1 1 300px</span>; /* responsive fields */
+    }
+    
+    <span class="css-property">.form-actions</span> {
+        <span class="css-property">display</span>: <span class="css-value">flex</span>;
+        <span class="css-property">justify-content</span>: <span class="css-value">space-between</span>;
+        <span class="css-property">align-items</span>: <span class="css-value">center</span>;
+    }
+                        </div>
+                    </div>
+    
+                    <!-- Equal Height Cards -->
+                    <div class="demo-container">
+                        <div class="demo-title">Equal Height Pricing Cards</div>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <div style="flex: 1 1 250px; display: flex; flex-direction: column; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); overflow: hidden; min-width: 250px;">
+                                <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 2rem; text-align: center;">
+                                    <h3 style="margin: 0 0 0.5rem 0; font-size: 1.5rem;">Basic</h3>
+                                    <div style="font-size: 2.5rem; font-weight: bold;">$9</div>
+                                    <div style="opacity: 0.9;">per month</div>
+                                </div>
+                                <div style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
+                                    <ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; flex: 1;">
+                                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">✓ 5 Projects</li>
+                                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">✓ 10GB Storage</li>
+                                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">✓ Email Support</li>
+                                    </ul>
+                                    <button style="width: 100%; padding: 1rem; background: #4facfe; color: white; border: none; border-radius: 4px; font-weight: 600; cursor: pointer;">Choose Plan</button>
+                                </div>
+                            </div>
+                            
+                            <div style="flex: 1 1 250px; display: flex; flex-direction: column; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); overflow: hidden; min-width: 250px; border: 3px solid #4facfe;">
+                                <div style="background: linear-gradient(135deg, #4facfe, #00f2fe); color: white; padding: 2rem; text-align: center; position: relative;">
+                                    <div style="position: absolute; top: -10px; right: 20px; background: #ff6b6b; color: white; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.8rem; font-weight: bold;">POPULAR</div>
+                                    <h3 style="margin: 0 0 0.5rem 0; font-size: 1.5rem;">Pro</h3>
+                                    <div style="font-size: 2.5rem; font-weight: bold;">$29</div>
+                                    <div style="opacity: 0.9;">per month</div>
+                                </div>
+                                <div style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
+                                    <ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; flex: 1;">
+                                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">✓ 25 Projects</li>
+                                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">✓ 100GB Storage</li>
+                                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">✓ Priority Support</li>
+                                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">✓ Advanced Analytics</li>
+                                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">✓ Team Collaboration</li>
+                                    </ul>
+                                    <button style="width: 100%; padding: 1rem; background: #4facfe; color: white; border: none; border-radius: 4px; font-weight: 600; cursor: pointer;">Choose Plan</button>
+                                </div>
+                            </div>
+                            
+                            <div style="flex: 1 1 250px; display: flex; flex-direction: column; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); overflow: hidden; min-width: 250px;">
+                                <div style="background: linear-gradient(135deg, #43e97b, #38f9d7); color: white; padding: 2rem; text-align: center;">
+                                    <h3 style="margin: 0 0 0.5rem 0; font-size: 1.5rem;">Enterprise</h3>
+                                    <div style="font-size: 2.5rem; font-weight: bold;">$99</div>
+                                    <div style="opacity: 0.9;">per month</div>
+                                </div>
+                                <div style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
+                                    <ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; flex: 1;">
+                                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">✓ Unlimited Projects</li>
+                                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">✓ 1TB Storage</li>
+                                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">✓ 24/7 Phone Support</li>
+                                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">✓ Custom Integrations</li>
+                                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">✓ Advanced Security</li>
+                                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">✓ Dedicated Manager</li>
+                                    </ul>
+                                    <button style="width: 100%; padding: 1rem; background: #4facfe; color: white; border: none; border-radius: 4px; font-weight: 600; cursor: pointer;">Choose Plan</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-display">
+    <span class="css-property">.pricing-container</span> {
+        <span class="css-property">display</span>: <span class="css-value">flex</span>;
+        <span class="css-property">gap</span>: <span class="css-value">1rem</span>;
+        <span class="css-property">flex-wrap</span>: <span class="css-value">wrap</span>;
+    }
+    
+    <span class="css-property">.pricing-card</span> {
+        <span class="css-property">flex</span>: <span class="css-value">1 1 250px</span>; /* responsive + min-width */
+        <span class="css-property">display</span>: <span class="css-value">flex</span>;
+        <span class="css-property">flex-direction</span>: <span class="css-value">column</span>; /* stack vertically */
+    }
+    
+    <span class="css-property">.card-content</span> {
+        <span class="css-property">flex</span>: <span class="css-value">1</span>; /* grow to match tallest card */
+        <span class="css-property">display</span>: <span class="css-value">flex</span>;
+        <span class="css-property">flex-direction</span>: <span class="css-value">column</span>;
+    }
+    
+    <span class="css-property">.feature-list</span> {
+        <span class="css-property">flex</span>: <span class="css-value">1</span>; /* push button to bottom */
+    }
+                        </div>
+                    </div>
+    
+                    <!-- Sticky Footer -->
+                    <div class="demo-container">
+                        <div class="demo-title">Sticky Footer Layout</div>
+                        <div style="display: flex; flex-direction: column; height: 300px; border: 2px solid #ddd; border-radius: 8px; overflow: hidden;">
+                            <div style="background: #34495e; color: white; padding: 1rem; text-align: center; font-weight: bold;">
+                                Header Navigation
+                            </div>
+                            <div style="flex: 1; padding: 2rem; background: #ecf0f1; display: flex; align-items: center; justify-content: center; text-align: center;">
+                                <div>
+                                    <h3 style="margin: 0 0 1rem 0;">Main Content</h3>
+                                    <p style="margin: 0; color: #666;">This content area grows to fill available space.<br>Footer always stays at the bottom, even with minimal content.</p>
+                                </div>
+                            </div>
+                            <div style="background: #2c3e50; color: white; padding: 1rem; text-align: center;">
+                                © 2024 Company Name. All rights reserved.
+                            </div>
+                        </div>
+                        <div class="code-display">
+    <span class="css-property">.page-container</span> {
+        <span class="css-property">display</span>: <span class="css-value">flex</span>;
+        <span class="css-property">flex-direction</span>: <span class="css-value">column</span>;
+        <span class="css-property">min-height</span>: <span class="css-value">100vh</span>; /* full viewport height */
+    }
+    
+    <span class="css-property">.main-content</span> {
+        <span class="css-property">flex</span>: <span class="css-value">1</span>; /* grows to push footer down */
+    }
+    
+    <span class="css-property">.footer</span> {
+        <span class="css-property">flex-shrink</span>: <span class="css-value">0</span>; /* never shrinks */
+    }
+                        </div>
+                    </div>
+    
+                    <!-- Mobile Navigation -->
+                    <div class="demo-container">
+                        <div class="demo-title">Mobile-First Navigation</div>
+                        <div style="background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow: hidden;">
+                            <!-- Desktop Navigation -->
+                            <div style="background: #2c3e50; color: white; padding: 1rem;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div style="font-size: 1.25rem; font-weight: bold;">Brand Logo</div>
+                                    <div style="display: flex; gap: 2rem; align-items: center;">
+                                        <a href="#" style="color: white; text-decoration: none;">Home</a>
+                                        <a href="#" style="color: white; text-decoration: none;">Products</a>
+                                        <a href="#" style="color: white; text-decoration: none;">About</a>
+                                        <a href="#" style="color: white; text-decoration: none;">Contact</a>
+                                        <button style="background: #4facfe; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">Login</button>
+                                    </div>
+                                    <div style="display: none; cursor: pointer; font-size: 1.5rem;">☰</div>
+                                </div>
+                            </div>
+                            <!-- Mobile Navigation (simulated) -->
+                            <div style="background: #34495e; color: white; padding: 1rem; border-top: 1px solid #4a6741;">
+                                <div style="text-align: center; margin-bottom: 1rem; font-weight: bold; color: #bdc3c7;">Mobile View (collapsed):</div>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div style="font-size: 1.25rem; font-weight: bold;">Brand Logo</div>
+                                    <div style="cursor: pointer; font-size: 1.5rem;">☰</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-display">
+    <span class="css-property">.navbar</span> {
+        <span class="css-property">display</span>: <span class="css-value">flex</span>;
+        <span class="css-property">justify-content</span>: <span class="css-value">space-between</span>;
+        <span class="css-property">align-items</span>: <span class="css-value">center</span>;
+    }
+    
+    <span class="css-property">.nav-links</span> {
+        <span class="css-property">display</span>: <span class="css-value">flex</span>;
+        <span class="css-property">gap</span>: <span class="css-value">2rem</span>;
+        <span class="css-property">align-items</span>: <span class="css-value">center</span>;
+    }
+    
+    <span class="css-property">@media (max-width: 768px)</span> {
+        <span class="css-property">.nav-links</span> { <span class="css-property">display</span>: <span class="css-value">none</span>; }
+        <span class="css-property">.mobile-toggle</span> { <span class="css-property">display</span>: <span class="css-value">block</span>; }
+    }
+                        </div>
+                    </div>
+    
+                    <!-- Toolbar Layout -->
+                    <div class="demo-container">
+                        <div class="demo-title">Application Toolbar</div>
+                        <div style="background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+                                <!-- Left section -->
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <button style="background: #4facfe; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600;">+ New</button>
+                                    <div style="display: flex; gap: 0.5rem;">
+                                        <button style="background: #f8f9fa; border: 1px solid #ddd; padding: 0.5rem; border-radius: 4px; cursor: pointer;">📁</button>
+                                        <button style="background: #f8f9fa; border: 1px solid #ddd; padding: 0.5rem; border-radius: 4px; cursor: pointer;">✂️</button>
+                                        <button style="background: #f8f9fa; border: 1px solid #ddd; padding: 0.5rem; border-radius: 4px; cursor: pointer;">📋</button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Center section -->
+                                <div style="flex: 1; max-width: 400px;">
+                                    <input type="text" placeholder="Search files..." style="width: 100%; padding: 0.5rem 1rem; border: 1px solid #ddd; border-radius: 20px; font-size: 0.9rem;">
+                                </div>
+                                
+                                <!-- Right section -->
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <button style="background: #f8f9fa; border: 1px solid #ddd; padding: 0.5rem; border-radius: 4px; cursor: pointer;">⚙️</button>
+                                    <button style="background: #f8f9fa; border: 1px solid #ddd; padding: 0.5rem; border-radius: 4px; cursor: pointer;">🔔</button>
+                                    <div style="width: 32px; height: 32px; background: linear-gradient(45deg, #667eea, #764ba2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.8rem;">JD</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-display">
+    <span class="css-property">.toolbar</span> {
+        <span class="css-property">display</span>: <span class="css-value">flex</span>;
+        <span class="css-property">justify-content</span>: <span class="css-value">space-between</span>;
+        <span class="css-property">align-items</span>: <span class="css-value">center</span>;
+        <span class="css-property">gap</span>: <span class="css-value">1rem</span>;
+    }
+    
+    <span class="css-property">.toolbar-left</span> {
+        <span class="css-property">display</span>: <span class="css-value">flex</span>;
+        <span class="css-property">align-items</span>: <span class="css-value">center</span>;
+        <span class="css-property">gap</span>: <span class="css-value">1rem</span>;
+    }
+    
+    <span class="css-property">.toolbar-center</span> {
+        <span class="css-property">flex</span>: <span class="css-value">1</span>; /* grows to fill space */
+        <span class="css-property">max-width</span>: <span class="css-value">400px</span>;
+    }
+    
+    <span class="css-property">.toolbar-right</span> {
+        <span class="css-property">display</span>: <span class="css-value">flex</span>;
+        <span class="css-property">align-items</span>: <span class="css-value">center</span>;
+        <span class="css-property">gap</span>: <span class="css-value">1rem</span>;
+    }
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Quick Reference Section -->
+            <div class="section" id="reference">
+                <div class="section-header">Quick Reference</div>
+                <div class="section-content">
+                    
+                    <h3>Container Properties</h3>
+                    <table class="properties-table">
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Values</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>display</strong></td>
+                                <td>flex | inline-flex</td>
+                                <td>Creates a flex container</td>
+                            </tr>
+                            <tr>
+                                <td><strong>flex-direction</strong></td>
+                                <td>row | row-reverse | column | column-reverse</td>
+                                <td>Sets the main axis direction</td>
+                            </tr>
+                            <tr>
+                                <td><strong>flex-wrap</strong></td>
+                                <td>nowrap | wrap | wrap-reverse</td>
+                                <td>Controls if items wrap to new lines</td>
+                            </tr>
+                            <tr>
+                                <td><strong>justify-content</strong></td>
+                                <td>flex-start | flex-end | center | space-between | space-around | space-evenly</td>
+                                <td>Aligns items along main axis</td>
+                            </tr>
+                            <tr>
+                                <td><strong>align-items</strong></td>
+                                <td>stretch | flex-start | flex-end | center | baseline</td>
+                                <td>Aligns items along cross axis</td>
+                            </tr>
+                            <tr>
+                                <td><strong>align-content</strong></td>
+                                <td>stretch | flex-start | flex-end | center | space-between | space-around</td>
+                                <td>Aligns wrapped lines</td>
+                            </tr>
+                            <tr>
+                                <td><strong>gap</strong></td>
+                                <td>length | percentage</td>
+                                <td>Sets gaps between items</td>
+                            </tr>
+                        </tbody>
+                    </table>
+    
+                    <h3>Item Properties</h3>
+                    <table class="properties-table">
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Values</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>flex-grow</strong></td>
+                                <td>number (default: 0)</td>
+                                <td>How much item should grow</td>
+                            </tr>
+                            <tr>
+                                <td><strong>flex-shrink</strong></td>
+                                <td>number (default: 1)</td>
+                                <td>How much item should shrink</td>
+                            </tr>
+                            <tr>
+                                <td><strong>flex-basis</strong></td>
+                                <td>auto | length | percentage</td>
+                                <td>Initial size before growing/shrinking</td>
+                            </tr>
+                            <tr>
+                                <td><strong>flex</strong></td>
+                                <td>grow shrink basis</td>
+                                <td>Shorthand for grow, shrink, basis</td>
+                            </tr>
+                            <tr>
+                                <td><strong>align-self</strong></td>
+                                <td>auto | stretch | flex-start | flex-end | center | baseline</td>
+                                <td>Override container's align-items</td>
+                            </tr>
+                            <tr>
+                                <td><strong>order</strong></td>
+                                <td>integer (default: 0)</td>
+                                <td>Changes visual order of items</td>
+                            </tr>
+                        </tbody>
+                    </table>
+    
+                    <h3>Common Flex Shorthand Values</h3>
+                    <table class="properties-table">
+                        <thead>
+                            <tr>
+                                <th>Shorthand</th>
+                                <th>Equivalent to</th>
+                                <th>Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>flex: 1</strong></td>
+                                <td>flex: 1 1 0%</td>
+                                <td>Items grow equally, ignore content size</td>
+                            </tr>
+                            <tr>
+                                <td><strong>flex: auto</strong></td>
+                                <td>flex: 1 1 auto</td>
+                                <td>Items grow/shrink based on content</td>
+                            </tr>
+                            <tr>
+                                <td><strong>flex: none</strong></td>
+                                <td>flex: 0 0 auto</td>
+                                <td>Items don't grow or shrink</td>
+                            </tr>
+                            <tr>
+                                <td><strong>flex: 0 0 200px</strong></td>
+                                <td>flex: 0 0 200px</td>
+                                <td>Fixed size item (200px)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    
+        <script>
+            // Add some basic interactivity for demonstrations
+            document.addEventListener('DOMContentLoaded', function() {
+                // Smooth scrolling for navigation links
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href').substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    });
+                });
+                
+                // Add interactive hover effects to flex items
+                document.querySelectorAll('.flex-item').forEach(item => {
+                    item.addEventListener('mouseenter', function() {
+                        this.style.transform = 'scale(1.05)';
+                        this.style.transition = 'transform 0.2s ease';
+                    });
+                    
+                    item.addEventListener('mouseleave', function() {
+                        this.style.transform = 'scale(1)';
+                    });
+                });
+            });
+    
+            // Print functionality
+            function printLesson() {
+                // Add a print note at the beginning
+                const printNote = document.createElement('div');
+                printNote.className = 'print-note';
+                printNote.innerHTML = `
+                    <strong>📚 Flexbox Comprehensive Guide - Print Version</strong><br>
+                    This document contains all flexbox properties, examples, and reference materials for offline study.<br>
+                    Generated on: ${new Date().toLocaleDateString()} at ${new Date().toLocaleTimeString()}
+                `;
+                
+                // Insert the note at the beginning of main content
+                const mainContent = document.querySelector('.main-content');
+                if (mainContent) {
+                    mainContent.insertBefore(printNote, mainContent.firstChild);
+                }
+    
+                // Show a brief message before printing
+                const printBtn = document.getElementById('printBtn');
+                const originalText = printBtn.innerHTML;
+                printBtn.innerHTML = '🖨️ Preparing...';
+                printBtn.disabled = true;
+    
+                // Small delay to ensure styles are applied
+                setTimeout(() => {
+                    try {
+                        // Open print dialog
+                        window.print();
+                    } catch (error) {
+                        console.error('Print failed:', error);
+                        alert('Print failed. Please try using Ctrl+P or Cmd+P manually.');
+                    } finally {
+                        // Restore button and remove print note
+                        setTimeout(() => {
+                            printBtn.innerHTML = originalText;
+                            printBtn.disabled = false;
+                            
+                            // Remove the print note
+                            if (printNote && printNote.parentNode) {
+                                printNote.parentNode.removeChild(printNote);
+                            }
+                        }, 1000);
+                    }
+                }, 100);
+            }
+    
+            // Add keyboard shortcut for printing (Ctrl+P / Cmd+P)
+            document.addEventListener('keydown', function(e) {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                    e.preventDefault();
+                    printLesson();
+                }
+            });
+        </script>
+    </body>
+</body>
+</html>
